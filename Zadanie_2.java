@@ -33,7 +33,36 @@ public class Zadanie_2 {
         String imie = "Tomasz",nazwisko = "Witak";
         double dwa_piec=(imie.length()%nazwisko.length()+1)/(Math.pow(2,(1/4)));
         System.out.println(dwa_piec);
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Wpisz slowo");
 
+        String slowo1 = myObj.nextLine();
+        System.out.println("Wpisz slowo");
+
+        String slowo2 = myObj.nextLine();// Read user input
+        System.out.println(slowo1 + slowo2);  // Output user input
+        System.out.println("Wpisz 1 liczbe");
+
+        String input= myObj.nextLine();
+        int liczba1 = Integer.parseInt(input);
+        System.out.println("Wpisz 2 liczbe");
+        input= myObj.nextLine();
+        int liczba2 = Integer.parseInt(input);
+        System.out.println(liczba1 + liczba2);  // Output user input
+        System.out.println(liczba1 - liczba2);
+        System.out.println(liczba1 * liczba2);
+        System.out.println(liczba1 / liczba2);
+
+        System.out.println("Wpisz  liczbe");
+
+        input= myObj.nextLine();
+        double liczba = Integer.parseInt(input);
+        System.out.println(liczba + 140);  // Output user input
+        System.out.println(liczba -31);
+        System.out.println(liczba * 7);
+        System.out.println(liczba / 13);
+        System.out.println((int)liczba % 7);
+        System.out.println((int)liczba / 4);
 
     }
 }
