@@ -17,48 +17,44 @@ public class Zadanie_3 {
 
         return czyPalindrom(zmiana);
     }
-
-    static int[] arrInsert(int n,int[] arr, int liczba,boolean poczatek){
-        int newarr[]=new int[n+1];
-        if (poczatek){
-            newarr[0]=liczba;
-            for(int i=0;i<n;i++){
-                newarr[i+1]=arr[i];
-            }
+    static long silnia(int n){
+        long factorial=1;
+        for(int i=1;i<=n;i++){
+            factorial*=i;
         }
-        else{
-            for(int i=0;i<n;i++){
-                newarr[i]=arr[i];
-            }
-            newarr[n]=liczba;
-        }
-        return newarr;
+        return factorial;
     }
-    static int[] wpisywanie(int i){
+    static int dwumianNewtona(int n, int k){
+
+        long n_fact= silnia(n),k_fact= silnia(k),n_k_fact= silnia(n-k);
+        return (int)(n_fact/(k_fact*n_k_fact));
+    }
+    static void ciagFibbonaciego(int n){
+        int suma=0;
+        for(int i=0;i<n;i++){
+            for(int j=1;j<=(i+1)/2;j++){
+                suma+=dwumianNewtona(i-j,j-1);
+            }
+            System.out.print(suma);
+            System.out.print(" ");
+            suma=0;
+        }
     }
     static void trojkatPascala(int n) {
-        if (n>=1){
-            System.out.println(1);
-        }
-        if (n>=2){
-            System.out.println(11);
-        }
-        if (n>2){
-            int[] wiersz = {},poprzedni_wiersz= {1,1},holder={};
-            for (int i=0;i<n-2;i++){
-                for (int j=0;j<=i;j++){
-                    wiersz=arrInsert(poprzedni_wiersz.length,wiersz,poprzedni_wiersz[j]+poprzedni_wiersz[j+1],false);
-                }
-                arrInsert(wiersz.length,wiersz,1,true);
-                arrInsert(wiersz.length,wiersz,1,false);
-                poprzedni_wiersz=wiersz;
-                wiersz=holder;
-                System.out.println(poprzedni_wiersz);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<=n-i;j++){
+                System.out.print(" ");
             }
+            for(int j=0;j<=i;j++){
+                System.out.print(dwumianNewtona(i,j));
+                System.out.print(" ");
+            }
+            System.out.println();
         }
     }
 public static void main(String[] args){
     System.out.println(czyPalindrom(123321));
     trojkatPascala(9);
+    ciagFibbonaciego(20);
 }
 }
