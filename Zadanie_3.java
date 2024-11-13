@@ -121,33 +121,37 @@ public class Zadanie_3 {
         return suma;
     }
 
-    static void podzbiory(int[] tab) {
-        ArrayList<Integer> pierwotna=new ArrayList<Integer>();
-        ArrayList<Integer> zwrotka=new ArrayList<Integer>();
-        for (int i:tab             ) {
-            pierwotna.add(tab[i-1]);
-        }
-        podzbiory2(zwrotka,pierwotna);
-    }
+//    static void podzbiory(int[] tab) {
+//        ArrayList<Integer> pierwotna=new ArrayList<Integer>();
+//        String zwrotka="";
+//        for (int i:tab             ) {
+//            pierwotna.add(tab[i-1]);
+//        }
+//        System.out.println(podzbiory2(zwrotka,pierwotna));
+//    }
 
-    static void podzbiory2(ArrayList zwrotka, ArrayList pierwotna) {
-        if (pierwotna.isEmpty()) {
-            System.out.print("(");
-            for (Object i:zwrotka) {
-                System.out.print(i+", ");
-            }
-            System.out.print("),");
-        } else {
-            int do_wpisania= (int) pierwotna.get(0);
-            pierwotna.remove(0);
-            ArrayList<Integer> zwrotka2=new ArrayList<Integer>();
-            zwrotka2= (ArrayList<Integer>) zwrotka.clone();
-            zwrotka.add(do_wpisania);
-            podzbiory2(zwrotka,pierwotna);
-            podzbiory2(zwrotka2,pierwotna);
-
-        }
-    }
+//    static String podzbiory2(String zwrotka, ArrayList pierwotna) {
+//        if (pierwotna.isEmpty()) {
+//            String zwracana;
+//            zwracana="("+zwrotka+")";
+//            return zwracana;
+//        } else {
+//            int do_wpisania= (int) pierwotna.get(0);
+//            ArrayList<Integer> pierwotna2=new ArrayList<Integer>();
+//            ArrayList<Integer> pierwotna3=new ArrayList<Integer>();
+//            String zwrotka3=zwrotka;
+//            pierwotna2= pierwotna;
+//            pierwotna3= pierwotna;
+//            pierwotna2.remove(0);
+//            String zwrotka2= zwrotka;
+//            zwrotka3=zwrotka+do_wpisania+",";
+//            String TEST=podzbiory2(zwrotka2,pierwotna2);
+//            String TEST2=podzbiory2(zwrotka3,pierwotna3);
+//            return (TEST2+TEST);
+//
+//
+//        }
+//    }
 
 
 
@@ -300,7 +304,7 @@ public class Zadanie_3 {
 
     public static void main(String[] args) {
         System.out.println(czyPalindrom(123321));
-        podzbiory(new int[]{1, 2, 3, 4});
+//        podzbiory(new int[]{1, 2, 3, 4});
 //        trojkatPascala(9);
 //        System.out.println();
 //        ciagFibbonaciego(20);
