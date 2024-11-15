@@ -103,14 +103,14 @@ public class z4 {
 
     public static int ileMinimalnych(int[] tab) {
         int ile_min = 0;
-        int max = tab[0];
+        int min = tab[0];
         for (int i = 1; i < tab.length; i++) {
-            if (tab[i] < max) {
-                max = tab[i];
+            if (tab[i] < min) {
+                min = tab[i];
             }
         }
         for (int i = 0; i < tab.length; i++) {
-            if (tab[i] == max) {
+            if (tab[i] == min) {
                 ile_min++;
             }
 
@@ -118,13 +118,14 @@ public class z4 {
         return ile_min;
     }
 
-    public static void ileUnikalnych(int[] tab) {
+    public static int ileUnikalnych(int[] tab) {
         ArrayList<Integer> unikat = new ArrayList<Integer>();
         for (int i = 0; i < tab.length; i++) {
             if (checker(unikat, tab[i])) {
                 unikat.add(tab[i]);
             }
         }
+        return unikat.size();
 
     }
 
@@ -158,11 +159,12 @@ public class z4 {
         }
         return ile_uj;
     }
-    public static double sumaOdwrotnbych(int[] tab) {
+
+    public static double sumaOdwrotnych(int[] tab) {
         int ile_uj = 0;
         for (int i = 0; i < tab.length; i++) {
             if (tab[i] < 0) {
-                ile_uj += (1/tab[i]);
+                ile_uj += (1 / tab[i]);
 
             }
 
@@ -170,12 +172,91 @@ public class z4 {
         return ile_uj;
     }
 
+    public static double sredniaHarmoniczna(int[] tab) {
+        double sumaOdwrotnosci = sumaOdwrotnych(tab);
+        double ile = tab.length;
+        double sredniaHarmoniczna = ile / sumaOdwrotnosci;
+        return sredniaHarmoniczna;
+    }
+
+    public static double sredniaArytmetyczna(int[] tab) {
+        int suma = sumaDodatnich(tab) + sumaUjemnych(tab);
+        return suma / tab.length;
+    }
+
+    public static double sredniaGeometryczna(int[] tab) {
+        double iloczyn = 1;
+        double ktoraPotega = 0;
+        for (int el : tab) {
+
+            iloczyn *= el;
+            ktoraPotega++;
+
+        }
+        double srednia = 0;
+        try {
+            srednia = Math.pow(iloczyn, 1 / ktoraPotega);
+        } catch (ArithmeticException e) {
+            System.out.println("w tabeli są ujemne");
+            return 0.0;
+        }
+        return srednia;
+    }
+
+    public static double[] funkcjaWykladnicza(int[] tab, double a) {
+        double[] tablica = new double[tab.length];
+        for (int i = 0; i < tab.length; i++) {
+            tablica[i] = Math.pow(a, tab[i]);
+        }
+        return tablica;
+    }
+
+    public static double[] funkcjaKwadratowa(int[] tab, double a, double b, double c) {
+        double[] tablica = new double[tab.length];
+        for (int i = 0; i < tab.length; i++) {
+            tablica[i] = Math.pow(a * tab[i], 2) + b * tab[i] + c;
+        }
+        return tablica;
+    }
+
+    public static double[] funkcjaLiniowa(int[] tab, double a, double b) {
+        double[] tablica = new double[tab.length];
+        for (int i = 0; i < tab.length; i++) {
+            tablica[i] = a * tab[i] + b;
+        }
+        return tablica;
+    }
 
     public static void wypiszTablice(double[] tab) {
         for (int i = 0; i < tab.length; i++) {
             System.out.print(tab[i]);
             System.out.print(", ");
         }
+    }
+
+    public static int[] odwrocTablice(int[] tab, int indexStart, int indexStop) {
+        int[] tablicaOdwrocona = new int[tab.length];
+        int j = indexStop;
+        for (int i = 0; i < tab.length; i++) {
+            //tablicaOdwrocona[i]=tab[i];
+            if (i == indexStart) {
+                while (j >= indexStart) {
+                    tablicaOdwrocona[i] = tab[j];
+                    i++;
+                    j--;
+                }
+                i--;
+            } else tablicaOdwrocona[i] = tab[i];
+        }
+        return tablicaOdwrocona;
+    }
+
+    public static int[] odwrocTablice(int[] tab) {
+        int[] tablicaOdwrocona = new int[tab.length];
+        for (int i = tab.length - 1, j = 0; i >= 0 && j <= tab.length; i--, j++) {
+            tablicaOdwrocona[j] = tab[i];
+        }
+        return tablicaOdwrocona;
     }
 
     public static double[] generujZakres(int n, int minWartosc, int maxWartosc) {
@@ -186,6 +267,69 @@ public class z4 {
         for (int i = 1; i < n - 1; i++) {
             tablica[i] = minWartosc + podzielnik * i;
             System.out.println(tablica[i]);
+        }
+        return tablica;
+    }
+
+    public static int najdluzszyCiagUjemnych(int[] tab) {
+        // Zmienna `najdluzszyCiag` przechowuje długość najdłuższego ciągu liczb ujemnych
+        int najdluzszyCiag = 0;
+        // Zmienna `ciagSprawdzany` śledzi aktualnie sprawdzany ciąg liczb ujemnych
+        int ciagSprawdzany = 0;
+
+
+        for (int i = 0; i < tab.length; i++) {
+            if (tab[i] < 0) {
+
+                ciagSprawdzany++;
+                if (ciagSprawdzany > najdluzszyCiag) {
+
+                    najdluzszyCiag = ciagSprawdzany;
+
+
+                }
+            } else {
+
+                ciagSprawdzany = 0;
+            }
+        }
+
+        return (najdluzszyCiag);
+    }
+
+    public static int najdluzszyCiagDodatnich(int[] tab) {
+        // Zmienna `najdluzszyCiag` przechowuje długość najdłuższego ciągu liczb ujemnych
+        int najdluzszyCiag = 0;
+        // Zmienna `ciagSprawdzany` śledzi aktualnie sprawdzany ciąg liczb ujemnych
+        int ciagSprawdzany = 0;
+
+
+        for (int i = 0; i < tab.length; i++) {
+            if (tab[i] < 0) {
+
+                ciagSprawdzany++;
+                if (ciagSprawdzany > najdluzszyCiag) {
+
+                    najdluzszyCiag = ciagSprawdzany;
+
+
+                }
+            } else {
+
+                ciagSprawdzany = 0;
+            }
+        }
+
+        return (najdluzszyCiag);
+    }
+
+    public static int[] funkcjaSignum(int[] tab) {
+        int[] tablica = new int[tab.length];
+        for (int i = 0; i < tab.length; i++) {
+            ;
+            if (tab[i] > 0) tablica[i] = 1;
+            if (tab[i] == 0) tablica[i] = 0;
+            if (tab[i] < 0) tablica[i] = -1;
         }
         return tablica;
     }
