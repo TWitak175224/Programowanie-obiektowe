@@ -4,6 +4,9 @@ public class Main {
         House domek = new House(15.7, "czerwony", 6);
         System.out.println(domek.color + " " + domek.height + " " + domek.numberOfRooms);
 
+//        Sprawdzenie sortowania
+
+        /*
         String[] tabStr={"a","g","c","b"};
         String chk = "";
         for(int i = 0;i<tabStr.length;i++){
@@ -16,7 +19,7 @@ public class Main {
             chk+=tabStr[i];
         }
         System.out.println(chk);
-
+*/
 
 
     }
@@ -106,6 +109,7 @@ class AudioPlayer implements MediaPlayer{
 
     AudioPlayer(){
         this.paused = false;
+        this.trackName = "";
     }
     @Override
     public void play(String trackName) {
@@ -129,6 +133,7 @@ class VideoPlayer implements MediaPlayer{
 
     VideoPlayer(){
         this.paused = false;
+        this.filmName = "";
     }
     @Override
     public void play(String trackName) {
@@ -147,7 +152,7 @@ class VideoPlayer implements MediaPlayer{
     }
 }
 //4
- class Storage<T> {
+class Storage<T> {
     T item = null;
 
     public void store(T item){
@@ -156,41 +161,41 @@ class VideoPlayer implements MediaPlayer{
     public T retrive(){
         return this.item;
     }
- }
+}
 // 5
- interface Authentication{
+interface Authentication{
     boolean login(String username, String password);
     boolean resetPassword(String username,String oldPassword,String newPassword);
     void logout();
- }
+}
 
- class UserAuthentication implements Authentication{
+class UserAuthentication implements Authentication{
     String username;
     String pass;
 
-     @Override
-     public boolean login(String username, String password) {
-         if((username==this.username) && (password==this.pass)){
-             return true;
-         }
-         return false;
-     }
+    @Override
+    public boolean login(String username, String password) {
+        if((username==this.username) && (password==this.pass)){
+            return true;
+        }
+        return false;
+    }
 
-     @Override
-     public boolean resetPassword(String username, String oldPassword, String newPassword) {
-         if((username==this.username) && (oldPassword==this.pass)){
-             this.pass = newPassword;
-             return true;
-         }
-         return false;
-     }
+    @Override
+    public boolean resetPassword(String username, String oldPassword, String newPassword) {
+        if((username==this.username) && (oldPassword==this.pass)){
+            this.pass = newPassword;
+            return true;
+        }
+        return false;
+    }
 
-     @Override
-     public void logout() {
-         System.out.println("wylogowano");
+    @Override
+    public void logout() {
+        System.out.println("wylogowano");
 
-     }
- }
+    }
+}
 
 class AdminAuthentication implements Authentication{
     String username;
